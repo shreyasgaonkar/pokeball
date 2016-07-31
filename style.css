@@ -1,0 +1,172 @@
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: url("pokemon1.png") no-repeat bottom center;
+    background-color: #EFEFEF;
+    background-size: auto;
+}
+
+h3 {
+    font-family: Helvetica, "Arial, sans-serif";
+}
+
+.container {
+    margin-top: 60px;
+}
+
+.pokeball-grow{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    --pokeball-size: 500px !important;
+}
+
+@media (max-width: 768px) {
+    .pokeball-grow{
+        --pokeball-size: 80vw !important;
+    }
+}
+@media (max-width: 980px) {
+    body {
+        background-size: contain;
+    }
+}
+
+
+.pokeball {
+    box-sizing: border-box;
+    --pokeball-size: 250px;
+    --pokeball-inner-size: calc(var(--pokeball-size) / 3.8);
+    --pokeball-border-size: 10px;
+
+    --before-diameter: var(--pokeball-inner-size);
+    --after-diameter: calc(var(--before-diameter) - (var(--pokeball-border-size) * 3));
+
+    border: var(--pokeball-border-size) solid #262122;
+    width: var(--pokeball-size);
+    height: var(--pokeball-size);
+    border-radius: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    background: linear-gradient(
+        150deg,
+        #BA0C2F 0%,
+        #BA0C2F 45%,
+        #262122 45%,
+        #262122 55%,
+        #FFF 55%,
+        #FFF 100%
+    );
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+}
+
+.pokeball:before, .pokeball:after {
+    content: " ";
+    border-radius: 100%;
+    display: block;
+    position: absolute;
+
+     -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+}
+
+.pokeball:before {
+    background: #262122;
+    width: var(--before-diameter);
+    height: var(--before-diameter);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.pokeball:after {
+    width: var(--after-diameter);
+    height: var(--after-diameter);
+    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: #FFF;
+    border: double var(--pokeball-border-size) #262122;
+}
+
+.pokeball-animate {
+    animation-name: shake;
+    animation-duration: 1.25s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@keyframes smooth {
+    0%{opacity: 1;}
+    100%{opacity: 1;}
+}
+
+@keyframes shake {
+    from{
+        transform: none;
+    }
+    20% {
+        transform: translate3d(-20%, 0, 0) rotate3d(0,0,1,-10deg);
+    }
+    40% {
+        transform: translate3d(20%, 0, 0) rotate3d(0,0,1, 5deg);
+    }
+    50% {
+        transform: translate3d(-10%, 0, 0) rotate3d(0,0,1, -10deg);
+    }
+     60% {
+        transform: translate3d(10%, 0, 0) rotate3d(0,0,1, 5deg);
+    }
+      70% {
+        transform: translate3d(-10%, 0, 0) rotate3d(0,0,1, -5deg);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    cursor: pointer;
+
+    /* Position the tooltip */
+    position: absolute;
+    top: 25px;
+    left: 50%;
+
+    transform: translate(-50%, 75%);
+
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    
+}
